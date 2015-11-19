@@ -17,5 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^', include('Restaurant_Manager.urls', namespace = "Restaurant_Manager")),
     url(r'^admin/', include(admin.site.urls)),
 ]
