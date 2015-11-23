@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here. migrations folder tracks all changes
 class Restaurant(models.Model):
     phone_number = models.CharField(max_length = 16)
     address = models.CharField(primary_key = True, max_length = 40)
