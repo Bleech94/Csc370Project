@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-<body>
 
-<h1>This is the homepage! Append '/account' to the URL.</h1>
+  {% include "Restaurant_Manager/head.html" %}
 
-<p>
-'templates' are our HTML pages
+  <body>
 
-<a href = "{% url 'Restaurant_Manager:account' %}">Click me!</a>
+    <h1>This is the homepage! Append '/account' to the URL.</h1>
 
-</p>
+    <p>
+    'templates' are our HTML pages
 
-</body>
+    <a href = "{% url 'Restaurant_Manager:account' %}">Click me!</a>
+
+    </p>
+
+  </body>
 </html>

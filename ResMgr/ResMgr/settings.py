@@ -71,6 +71,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ResMgr.wsgi.application'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'Restaurant_Manager/static/')
+
+STATIC_URL = '/static/'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
