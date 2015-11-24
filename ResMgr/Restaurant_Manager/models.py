@@ -1,22 +1,19 @@
 from django.db import models
 
 # Create your models here. migrations folder tracks all changes
-class Restaurant(models.Model):
-    phone_number = models.CharField(max_length = 16)
-    address = models.CharField(primary_key = True, max_length = 40)
-    postal_code = models.CharField(max_length = 7)
-
-class Table(models.Model):
-    number = models.IntegerField(primary_key = True)
-    occupied = models.BooleanField()
+class Receipt(models.Model):
+	number = models.AutoField(primary_key = True)
+	table = models.IntegerField(default = -1)
+	customer_total = models.FloatField(null = True)
+	ingredient_total =  models.FloatField(null = True)
+	date = models.DateTimeField(auto_now = True)
 
 class Order(models.Model):
-    number = models.IntegerField(primary_key = True)
+	number = models.AutoField(primary_key = True)
+	customer = models.IntegerField(default = -1)
+	foodItem = models.CharField(max_length = 30)
 
 class FoodItem(models.Model):
     name = models.CharField(primary_key = True, max_length = 30)
     customer_price = models.FloatField()
     ingredient_price = models.FloatField()
-
-class Menu(models.Model):
-    menu_type = models.CharField(primary_key = True, max_length = 20)
