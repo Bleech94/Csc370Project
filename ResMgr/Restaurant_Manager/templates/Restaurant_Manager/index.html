@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <link href="../../static/Restaurant_Manager/bootstrap.css" rel="stylesheet" type="text/css">
+<title>Restaurant Manager</title>
 {% include "Restaurant_Manager/head.html" %}
 
 <body>
@@ -10,7 +11,7 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand" href="#">Resteraunt Manager</a> </div>
+      <a class="navbar-brand" href="#">Restaurant Manager</a> </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
@@ -120,12 +121,12 @@
         <!-- End table --></div>
     </div>
   </div>
-  
+  </div>
   <div id="actions" class="col-md-12">
     <div class="col-md-4 action">
-    <h4>Add customer</h4>
-    <p>Use this form to add customers to the tables as seen above.</p>
-    <form id="add" action="">
+      <h4>Add customer</h4>
+      <p>Use this form to add customers to the tables as seen above.</p>
+      <form id="add" action="">
         <label for="addCustomerTable">Amount of customers:</label>
         <select id="addCustomerTable" name="table" class="form-control">
           <option>1</option>
@@ -133,7 +134,7 @@
           <option>3</option>
           <option>4</option>
         </select>
-      <br />
+        <br />
         <label for="addCustomerTable">Select a table to add the customer(s) to:</label>
         <select id="addCustomerTable" name="table" class="form-control">
           <option>Table 1</option>
@@ -145,14 +146,14 @@
         </select>
         <br />
         <input class="btn btn-default" type="submit" value="Submit">
-    </form>
+      </form>
     </div>
     <div class="col-md-4 action">
-    <h4>Empty table</h4>
-    <p>Select a table and a payee for the bills of the table.</p>
-    <br />
-    <form id="empty" action="">
-    	<label for="addCustomerTable">Select a table to empty:</label>
+      <h4>Empty table</h4>
+      <p>Select a table and a payee for the bills of the table.</p>
+      <br />
+      <form id="empty" action="">
+        <label for="addCustomerTable">Select a table to empty:</label>
         <select id="addCustomerTable" name="table" class="form-control">
           <option>Table 1</option>
           <option>Table 2</option>
@@ -172,16 +173,42 @@
         </select>
         <br />
         <input class="btn btn-default" type="submit" value="Submit">
-    </form>
+      </form>
     </div>
     <div class="col-md-4 action">
-    <h4>Add dish</h4>
-    <p></p>
-    <form id="addDish" action="">
-    	
-    </form>
-    </div>
-
+      <h4>Add dish</h4>
+      <p></p>
+      <form id="addDish" action="">
+        <label for="addDishTable">Select a table:</label>
+        <select id="addDishTable" name="table" class="form-control">
+          <option>Table 1</option>
+          <option>Table 2</option>
+          <option>Table 3</option>
+          <option>Table 4</option>
+          <option>Table 5</option>
+          <option>Table 6</option>
+        </select>
+        <br />
+        <label for="addDishSeat">Select a seat:</label>
+        <select id="addDishSeat" name="seat" class="form-control">
+          <option>Seat 1</option>
+          <option>Seat 2</option>
+          <option>Seat 3</option>
+          <option>Seat 4</option>
+        </select>
+        <br />
+        <label for="addDishDish">Select a dish:</label>
+        <select id="addDishDish" name="dish" class="form-control">
+			{% if dishes %}
+               {% for d in dishes %}
+                  <option>{{d.name}}</option>
+               {% endfor %}
+            {% endif %}
+        </select>
+        <br />
+        <input class="btn btn-default" type="submit" value="Submit">
+      </form>
+   
   </div>
 </div>
 </body>
