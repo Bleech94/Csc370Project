@@ -18,6 +18,11 @@ p {
 	border:groove;
 	border-width:3px;
 	border-radius:3px;
+	font-size:12px;
+}
+
+.itable b {
+	font-size:16px;	
 }
 
 .chair {

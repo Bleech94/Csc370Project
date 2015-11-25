@@ -38,7 +38,35 @@ def index(request):
 				# Save the order
 				newOrder = Order(customer = customerID, foodItem = dish)
 				newOrder.save()
-				
+			
+		elif(action == "emptyTable"):
+			#Retreive the request parameters
+			table = int(request.GET.get('table', '0'))
+			payee = int(request.GET.get('payee', '0'))
+			error = "Clearing out table "+str(table)+" and creating receipts."
+			
+			if(table > 0 and table < 7 and payee > -1 and payee < 5):
+				if(payee == 0):
+					# Individual bills
+					customersList = Receipt.objects.filter(table = table)[:4]
+					for c in customersList:
+						# Calculate totals
+						orders = Order.objects.filter(customer = c.number)
+						costSum = 0
+						ingSum = 0
+						for o in orders:
+							f = FoodItem.objects.get(pk = o.foodItem)
+							costSum += f.customer_price
+							ingSum += f.ingredient_price
+						# Update the customer
+						cust = Receipt.objects.get(pk = c.number)
+						cust.table = -1
+						cust.customer_total = costSum
+						cust.ingredient_total = ingSum
+						cust.save()
+				else:
+					# Someone is paying it all
+					pass
 	
 	
 	
