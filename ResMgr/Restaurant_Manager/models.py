@@ -7,6 +7,9 @@ class Receipt(models.Model):
 	customer_total = models.FloatField(null = True)
 	ingredient_total =  models.FloatField(null = True)
 	date = models.DateTimeField(auto_now = True)
+	def get_profit(self):
+		return round((self.customer_total - self.ingredient_total), 2)
+	profit = property(get_profit)
 
 class Order(models.Model):
 	number = models.AutoField(primary_key = True)

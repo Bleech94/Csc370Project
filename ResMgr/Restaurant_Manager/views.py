@@ -1,6 +1,8 @@
 from django.shortcuts import render, render_to_response, RequestContext
 from django.http import HttpResponse
 from django.db.models import Q
+import datetime
+from datetime import date, timedelta
 
 from .models import Order
 from .models import Receipt
@@ -11,7 +13,7 @@ from .models import FoodItem
 def index(request):
 	dishes = FoodItem.objects.all()
 	error = ""
-	
+
 	action = request.GET.get('action', '0')
 	if(action != 0):
 		if(action == "addCustomer"):
@@ -23,7 +25,7 @@ def index(request):
 				for x in range(customers):
 					customer.append(Receipt(table = table))
 					customer[x].save()
-			
+
 		elif(action == "addDish"):
 			#Retrieve request parameters
 			customer = int(request.GET.get('customer', '0'))
@@ -38,13 +40,13 @@ def index(request):
 				# Save the order
 				newOrder = Order(customer = customerID, foodItem = dish)
 				newOrder.save()
-			
+
 		elif(action == "emptyTable"):
 			#Retreive the request parameters
 			table = int(request.GET.get('table', '0'))
 			payee = int(request.GET.get('payee', '0'))
 			error = "Clearing out table "+str(table)+" and creating receipts."
-			
+
 			if(table > 0 and table < 7 and payee > -1 and payee < 5):
 				if(payee == 0):
 					# Individual bills
@@ -67,9 +69,9 @@ def index(request):
 				else:
 					# Someone is paying it all
 					pass
-	
-	
-	
+
+
+
 	# This should be in a loop with an array but yoloswag
 	t1 = Receipt.objects.filter(table = 1)
 	t2 = Receipt.objects.filter(table = 2)
@@ -78,7 +80,7 @@ def index(request):
 	t5 = Receipt.objects.filter(table = 5)
 	t6 = Receipt.objects.filter(table = 6)
 	# Create a list of orders at a table
-	t1Receipts, t2Receipts, t3Receipts, t4Receipts, t5Receipts, t6Receipts = [], [], [], [], [], [] 
+	t1Receipts, t2Receipts, t3Receipts, t4Receipts, t5Receipts, t6Receipts = [], [], [], [], [], []
 	for c in t1:
 		t1Receipts.append(c.number)
 	for c in t2:
@@ -98,7 +100,15 @@ def index(request):
 	t5Orders = Order.objects.filter(customer__in=t5Receipts)
 	t6Orders = Order.objects.filter(customer__in=t6Receipts)
 	return render(request, 'Restaurant_Manager/index.html', {'dishes': dishes, 'error': error, 't1':t1, 't2':t2, 't3':t3, 't4':t4, 't5':t5, 't6':t6, 't1Orders': t1Orders,'t2Orders': t2Orders,'t3Orders': t3Orders,'t4Orders': t4Orders,'t5Orders': t5Orders,'t6Orders': t6Orders})
-	
-	
-def account(request):
-    return render(request, 'Restaurant_Manager/account.html')
+
+
+def history(request):
+	receipts = Receipt.objects.all()
+	day1 = Receipt.objects.filter(date__range=(datetime.date.today(), datetime.date.today() + timedelta(days=1)))
+	day2 = Receipt.objects.filter(date__range=(datetime.date.today() + timedelta(days=-1), datetime.date.today()))
+	day3 = Receipt.objects.filter(date__range=(datetime.date.today() + timedelta(days=-2), datetime.date.today() + timedelta(days=-1)))
+	day4 = Receipt.objects.filter(date__range=(datetime.date.today() + timedelta(days=-3), datetime.date.today() + timedelta(days=-2)))
+	day5 = Receipt.objects.filter(date__range=(datetime.date.today() + timedelta(days=-4), datetime.date.today() + timedelta(days=-3)))
+	day6 = Receipt.objects.filter(date__range=(datetime.date.today() + timedelta(days=-5), datetime.date.today() + timedelta(days=-4)))
+	day7 = Receipt.objects.filter(date__range=(datetime.date.today() + timedelta(days=-6), datetime.date.today() + timedelta(days=-5)))
+	return render(request, 'Restaurant_Manager/history.html', {'day1':day1, 'day2':day2,'day3':day3,'day4':day4,'day5':day5,'day6':day6,'day7':day7})

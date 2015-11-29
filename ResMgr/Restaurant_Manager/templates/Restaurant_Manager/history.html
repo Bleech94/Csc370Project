@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+  <link href="../../static/Restaurant_Manager/bootstrap.css" rel="stylesheet" type="text/css">
+  <title>Restaurant Manager Transaction History</title>
+  {% include "Restaurant_Manager/head.html" %}
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="index.html">Restaurant Manager</a> </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class = "active"><a href="history">Customer Log</a></li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div style="background-color:#fff;">
+    <div class="container" style="margin-top:50px;">
+
+{% if day1 %}
+  <div class="container">
+    <h2>Collapse</h2>
+    <div class="panel-group" id="accordion">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> November 30, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            {% for receipt in day1 %}
+              <div class="panel-body">Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+{% if day2 %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"> November 29, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            {% for receipt in day2 %}
+            <div class="panel-body"> Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+{% if day3 %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> November 28, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            {% for receipt in day3 %}
+            <div class="panel-body"> Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+{% if day4 %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"> November 27, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse4" class="panel-collapse collapse">
+            {% for receipt in day4 %}
+            <div class="panel-body"> Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+{% if day5 %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"> November 26, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse5" class="panel-collapse collapse">
+            {% for receipt in day5 %}
+            <div class="panel-body"> Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+{% if day6 %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse6"> November 25, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse6" class="panel-collapse collapse">
+            {% for receipt in day6 %}
+            <div class="panel-body">Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+{% if day7 %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse7"> November 24, 2015 </a>
+            </h4>
+          </div>
+          <div id="collapse7" class="panel-collapse collapse">
+            {% for receipt in day7 %}
+            <div class="panel-body">Receipt Number: {{receipt.number}} Total Sale: ${{receipt.customer_total}} Ingredient Cost: ${{receipt.ingredient_total}} Profit: ${{receipt.profit}}</div>
+            {% endfor %}
+          </div>
+        </div>
+{% endif %}
+    </div>
+
+    </div>
+  </div>
+
+
+  </body>
+</html>
